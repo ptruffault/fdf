@@ -15,6 +15,7 @@
 # include "libft.h"
 # include "mlx.h"
 
+
 typedef struct s_windows
 {
 	void	*graph_id;
@@ -28,6 +29,15 @@ typedef struct s_map
 	int		**map;
 	int		width;
 	int		height;
+
+	
+	int 	dist_pts_x;
+	int 	dist_pts_y;
+
+	int		margin_up;
+	int 	margin_down;
+	int		margin_left;
+	int 	margin_right;
 } t_map;
 
 /*
@@ -44,7 +54,7 @@ int init_map(t_map *map, char *map_file_path);
 /*
  * setup.c
 */
-void init_windows(t_windows *new);
+void init_windows(t_windows *new, t_map *data);
 
 
 /*
@@ -56,4 +66,5 @@ void free_map(t_map *map);
  * draw
 */
 void    draw_pixel(int x, int y, t_windows *window);
+void	draw_map_pts(t_windows *window, t_map *data);
 #endif

@@ -35,8 +35,8 @@ int main(int argc, char **argv)
 	if (argument_checker(argc, argv) && init_map(&map, argv[1]))
 	{
 		putmap(&map);
-		init_windows(&win);
-		draw_pixel(680, 360, &win);
+		init_windows(&win, &map);
+		draw_map_pts(&win, &map);
 		mlx_loop(win.graph_id);
 		free_map(&map);
 	}else
