@@ -149,8 +149,7 @@ debugclean:
 
 rdebug: debugclean debug
 
-clear:
-	@clear
+	
 
 sclean:
 	@rm -rf $(OBJ) $(NAME)
@@ -176,11 +175,11 @@ clean: lclean
 
 fclean:	lfclean
 	@ $(MAKE) -C $(LIBFT_PATH) --no-print-directory fclean
-	@ $(MAKE) -C $(MINILIBX_PATH) --no-print-directory fclean
+	@ $(MAKE) -C $(MINILIBX_PATH) --no-print-directory clean
 
-re:		fclean all
+re:	fclean all
 
-fre: clear sclean all
+fre: sclean all
 
 exe: all
 	./$(NAME)
@@ -188,7 +187,7 @@ exe: all
 val: all
 	@ valgrind --leak-check=full --show-leak-kinds=all -v ./$(NAME)
 
-save: fclean clear
+save: fclean
 	@ git add --all && git commit -m "make save" && git push
 
 
@@ -200,7 +199,7 @@ save: fclean clear
 .PHONY: debug rdebug debugclean
 .PHONY: warn
 .PHONY: lclean lfclean lre val exe fre
-.PHONY: clear sclean clean fclean save
+.PHONY: sclean clean fclean save
 .PHONY: full-test test save val exe fre
 
 #############################
