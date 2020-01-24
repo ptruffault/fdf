@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-void    brensenham2(int x1, int y1, int x2, int y2, t_windows *window)
+void    brensenham_bis(int x1, int y1, int x2, int y2, t_windows *window)
 {
     int m;
     int e;
@@ -53,11 +53,11 @@ void    brensenham(int x1, int y1, int x2, int y2, t_windows *window)
 }
 
 
-void    init_bresenham(int x1, int y1, int x2, int y2, t_windows *window)
+void    init_brensenham(int x1, int y1, int x2, int y2, t_windows *window)
 {
     if (y2 - y1 < 0)
     {
-        brensenham2(x1, y2, x2, y2, window);
+        brensenham_bis(x1, y2, x2, y2, window);
     }
     else
     {
