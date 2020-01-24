@@ -29,6 +29,7 @@ static int map_checker(char **file_content, t_map *map)
 				return (error("Broken map file", ".fdf file is corrupted."));
 	}
 	map->height = i;
+	map->width--;
 	if (!(map->map = (int **)malloc(sizeof(int *) * map->height)))
 		return (error("Allocation failure", NULL));
 	return (1);
