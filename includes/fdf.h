@@ -56,4 +56,5 @@ void free_map(t_map *map);
  * draw
 */
 void    draw_pixel(int x, int y, t_windows *window);
+void    brensenham(int x1, int y1, int x2, int y2, t_windows *window);
 #endif
