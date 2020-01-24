@@ -19,6 +19,7 @@ SRC		:=	\
 	helpers.c \
 	free_struct.c \
 	draw.c \
+	brensenham.c \
 	
 
 SRCDIR	:=	srcs
