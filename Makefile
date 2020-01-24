@@ -116,41 +116,6 @@ $(BUILDDIR):
 	@ mkdir -p $(BUILDDIR)
 
 
-# Recompile with as much warning as possible
-warn:	WFLAGS := -Wall -Wextra -ansi -Wpedantic -Wno-vla
-warn:	WFLAGS += -Wstrict-prototypes -Wunreachable-code  -Wwrite-strings
-warn:	WFLAGS += -Wpointer-arith -Wbad-function-cast -Wcast-align -Wcast-qual
-CLANG_INSTALLED	:= $(shell which clang > /dev/null 2> /dev/null && echo yes)
-# If clang is installed also add this exclusive warning
-ifdef CLANG_INSTALLED
-warn:	CC := clang
-warn:	WFLAGS += -Weverything -Wno-padded -Wno-missing-noreturn
-endif
-warn:	lre
-
-#### DEBUGING ####
-$(DBGDIR)/%.o:		$(SRCDIR)/%.c | $(DBGDIR) $(DEPDIR)
-	@printf "$(COLOR)$<$(NO_COLOR) -> "
-	@touch $<
-	@ $(CC) -c $< $(CFLAGS) -o  $@ && printf "$(DONE)\n" || printf "$(KO)\n"
-	@ $(DEPGEN) -c $< $(DEPFLAG) -MQ $@ \
-		> $(subst $(SRCDIR), $(DEPDIR), $(<:.c=.d))
-
-debug:	WFLAGS		:= -g
-debug:	$(DBG) | $(LIBFT_PATH)/$(LIBFT) $(MINILIBX_PATH)/$(MINILIBX)
-	@echo "$(OP_COLOR) building $(NAME)$(NO_COLOR)"
-	@$ $(LD) -o $(NAME) $(DBG) $(LDFLAG)
-	@printf "$(DONE)$(OP_COLOR)$(NAME)$(NO_COLOR)  \n"
-
-debugclean:
-	@ rm -r $(DBGDIR) 1> /dev/null 2> /dev/null \
-		&& printf "$(OP_COLOR)[CLR]$(NO_COLOR)"	:" debug obj" \
-		; (exit 0)
-
-rdebug: debugclean debug
-
-	
-
 sclean:
 	@rm -rf $(OBJ) $(NAME)
 
@@ -166,8 +131,6 @@ lfclean: lclean
 		&& printf "$(OP_COLOR)[CLR]$(NO_COLOR)	: $(NAME)\n" \
 		; (exit 0)
 
-lre: lfclean all
-
 #### MANDATORY ####
 clean: lclean
 	@ $(MAKE) -C $(LIBFT_PATH) --no-print-directory clean
@@ -179,13 +142,9 @@ fclean:	lfclean
 
 re:	fclean all
 
-fre: sclean all
-
 exe: all
 	./$(NAME)
 
-val: all
-	@ valgrind --leak-check=full --show-leak-kinds=all -v ./$(NAME)
 
 save: fclean
 	@ git add --all && git commit -m "make save" && git push
