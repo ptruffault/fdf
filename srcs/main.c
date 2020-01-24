@@ -36,10 +36,12 @@ int main(int argc, char **argv)
 	{
 		putmap(&map);
 		init_windows(&win);
-		draw_pixel(680, 360, &win);
+		//draw_pixel(680, 360, &win);
+		brensenham(100, 100, 350, 100, &win);
 		mlx_loop(win.graph_id);
 		free_map(&map);
-	}else
+	}
+	else
 		return (1);
 	return (0);
 }

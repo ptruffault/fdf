@@ -18,6 +18,7 @@ SRC		:=	\
 	parseur.c \
 	helpers.c \
 	free_struct.c \
+	brensenham.c \
 	draw.c \
 	
 
