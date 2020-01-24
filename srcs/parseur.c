@@ -59,7 +59,8 @@ static int setup_map(t_map *map, char **file_content)
 }
 
 
-int init_map(t_map *map, char *map_file_path){
+int init_map(t_map *map, char *map_file_path)
+{
 	char **file_content;
 	int fd;
 
@@ -67,12 +68,14 @@ int init_map(t_map *map, char *map_file_path){
 	if ((fd = ft_open(map_file_path)) >= 0 && (file_content = ft_get_txt(fd)))
 	{
 		ft_close(fd);
-		if (!map_checker(file_content, map) || !setup_map(map, file_content)){
+		if (!map_checker(file_content, map) || !setup_map(map, file_content))
+		{
 			ft_freestrarr(file_content);
 			return (error("Erreur de formatage du fichier map : ", map_file_path));
 		}
 		ft_freestrarr(file_content);
-	}else
+	}
+	else
 		return(error(strerror(errno) , map_file_path));
 	return (1);
 }

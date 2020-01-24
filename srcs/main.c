@@ -36,6 +36,7 @@ int main(int argc, char **argv)
 	{
 		putmap(&map);
 		init_windows(&win);
+		draw_pixel(680, 360, &win);
 		mlx_loop(win.graph_id);
 		free_map(&map);
 	}else

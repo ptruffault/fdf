@@ -13,6 +13,7 @@
 #ifndef FDF_H
 # define FDF_H
 # include "libft.h"
+# include "mlx.h"
 
 typedef struct s_windows
 {
@@ -51,5 +52,8 @@ void init_windows(t_windows *new);
 */
 void free_map(t_map *map);
 
-
+/*
+ * draw
+*/
+void    draw_pixel(int x, int y, t_windows *window);
 #endif
