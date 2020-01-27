@@ -16,6 +16,14 @@
 # include "mlx.h"
 
 
+typedef struct s_point
+{
+	int		x;
+	int		y;
+	int 	z;
+	char	*color;
+} t_point;
+
 typedef struct s_windows
 {
 	void	*graph_id;
@@ -38,12 +46,13 @@ typedef struct  s_bresenham
 
 typedef struct s_map
 {
-	int		**map;
+	t_point **points;
 	int		width;
 	int		height;
 	
 	int 	dist_pts_x;
 	int 	dist_pts_y;
+	int 	z_multiplicateur;
 
 	int		margin_up;
 	int 	margin_down;
@@ -55,6 +64,8 @@ typedef struct s_map
  * HELPERS
 */
 void putmap(t_map *map);
+int max(int a, int b);
+int min(int a, int b);
 
 
 /*

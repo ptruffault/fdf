@@ -148,7 +148,8 @@ exe: all
 
 
 save: fclean
-	@ git add --all && git commit -m "make save" && git push
+	@ git add --all && git commit -m "make save" && git pull
+	@ git push
 
 
 #############################
