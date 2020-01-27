@@ -18,8 +18,7 @@ void    go_brensenham(t_bresenham bre, t_windows *window, int increm, int h_v)
     }
 }
 
-
-void    bresenham(int x1, int y1, int x2, int y2, t_windows *window)
+void    init_brensenham(int x1, int y1, int x2, int y2, t_windows *window)
 {
     t_bresenham bre;
 
