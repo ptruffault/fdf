@@ -36,6 +36,7 @@ int main(int argc, char **argv)
 	{
 		putmap(&map);
 		init_windows(&win, &map);
+		//bresenham(0, 0, 100, 1000, &win);
 		draw_map_pts(&win, &map);
 		mlx_loop(win.graph_id);
 		free_map(&map);

@@ -24,6 +24,18 @@ typedef struct s_windows
 	int		height;
 } t_windows;
 
+typedef struct  s_bresenham
+{
+	int dx;
+	int dy;
+	int start;
+	int stop;
+	int p_increm;
+	int e;
+	int m;
+	int sub;
+}	t_bresenham;
+
 typedef struct s_map
 {
 	int		**map;
@@ -67,6 +79,7 @@ void free_map(t_map *map);
 */
 void    draw_pixel(int x, int y, t_windows *window);
 void	draw_map_pts(t_windows *window, t_map *data);
-void    brensenham(int x1, int y1, int x2, int y2, t_windows *window);
-
+void    brensenham2(int x1, int y1, int x2, int y2, t_windows *window, int increm);
+void	bresenham(int x1, int y1, int x2, int y2, t_windows *window);
+void    go_brensenham(t_bresenham bre, t_windows *window, int increm, int h_v);
 #endif

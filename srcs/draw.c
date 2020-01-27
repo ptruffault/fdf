@@ -34,6 +34,7 @@ void	draw_map_pts(t_windows *window, t_map *data)
 	int x2;
 	int y2;
 
+    (void)window;
 	i = -1;
 	while (++i < data->height)
 	{
@@ -49,7 +50,7 @@ void	draw_map_pts(t_windows *window, t_map *data)
 			{
 				x2 = data->margin_left + (j + 1) * data->dist_pts_x;
 				y2 = data->margin_up + i * data->dist_pts_y + data->map[i][j + 1] * 10;
-				brensenham(x1, y1, x2, y2, window);
+				bresenham(x1, y1, x2, y2, window);
 			}
 			
 
@@ -58,7 +59,7 @@ void	draw_map_pts(t_windows *window, t_map *data)
 			{
 				x2 = data->margin_left + j * data->dist_pts_x;
 				y2 = data->margin_up + (i + 1) * data->dist_pts_y + data->map[i + 1][j] * 10;
-				brensenham(x1, y1, x2, y2, window);
+				bresenham(x1, y1, x2, y2, window);
 			}
 			
 
