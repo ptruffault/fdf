@@ -25,14 +25,23 @@ static int map_checker(char **file_content, t_map *map)
 			return (error("Broken map file", "Each line of map as to have the same width"));
 		j = -1;
 		while (file_content[i][++j])
-			if (!ft_isdigit(file_content[i][j]) && file_content[i][j] != ' ' && file_content[i][j] != '-')
+			if (!ft_isdigit(file_content[i][j]) && !ft_strchr(" -,xABCDEFabcdef", file_content[i][j]))
 				return (error("Broken map file", ".fdf file is corrupted."));
 	}
 	map->height = i;
 	map->width--;
-	if (!(map->map = (int **)malloc(sizeof(int *) * map->height)))
-		return (error("Allocation failure", NULL));
+	if (!(map->points = (t_point **)malloc(sizeof(t_point) * map->height)))
+		return (error("setup_map filure:", "allocation"));
 	return (1);
+}
+
+
+static void setup_points_color(t_map *map, char *current_word, int i, int j)
+{
+	char *ptr;
+
+	ptr = ft_strchr(current_word, ',');
+	map->points[i][j].color = ft_strdup(ptr ? ptr : "0xE2EDEC");
 }
 
 static int setup_map(t_map *map, char **file_content)
@@ -45,15 +54,21 @@ static int setup_map(t_map *map, char **file_content)
 	while(file_content[++i])
 	{
 		if (!(words = ft_strsplit_whitespace(file_content[i])))
-			return (0);
-		if (!(map->map[i] = (int *)malloc(sizeof(int) * map->width)))
+			return (error("setup_map filure:", "allocation"));
+		if (!(map->points[i] = (t_point *)malloc(sizeof(t_point) * map->width)))
 		{
 			ft_freestrarr(words);
-			return (0);
+			return (error("setup_map filure:", "allocation"));
 		}
 		j = -1;
 		while (words[++j])
-			map->map[i][j] = ft_atoi(words[j]);
+		{
+			map->points[i][j].x = i;
+			map->points[i][j].y = j;
+			map->points[i][j].z = ft_atoi(words[j]);
+			setup_points_color(map, words[j], i, j);
+			
+		}
 		ft_freestrarr(words);
 	}
 	return (1);

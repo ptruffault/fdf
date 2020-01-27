@@ -13,6 +13,17 @@
 #include <mlx.h>
 #include "fdf.h"
 
+int min(int a, int b)
+{
+	return (a < b ? a : b);
+}
+
+int max(int a, int b)
+{
+	return (a > b ? a : b);
+}
+
+
 void putmap(t_map *map)
 {
 	int i;
@@ -23,7 +34,7 @@ void putmap(t_map *map)
 	while (++i < map->height){
 		j = -1;
 		while (++j < map->width)
-			ft_printf("%3i  ", map->map[i][j]);
+			ft_printf("%3i  ", map->points[i][j].z);
 		ft_putchar('\n');
 	}
 }

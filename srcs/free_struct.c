@@ -23,6 +23,19 @@ void ft_freeint_arr(int **arr, int y_max){
 
 void free_map(t_map *map)
 {
-	ft_freeint_arr(map->map, map->height);
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < map->height)
+	{
+		j = -1;
+		while (++j < map->width)
+		{
+			ft_strdel(&map->points[i][j].color);
+			free(&map->points[i][j]);
+		}
+		free(&map->points[i]);
+	}
 }
 

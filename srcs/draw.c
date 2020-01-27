@@ -42,27 +42,28 @@ void	draw_map_pts(t_windows *window, t_map *data)
 		while (++j < data->width)
 		{
 			x1 = data->margin_left + j  * data->dist_pts_x;
-			y1 = data->margin_up + i * data->dist_pts_y + data->map[i][j] * 10;
+			y1 = data->margin_up + i * data->dist_pts_y - data->points[i][j].z * data->z_multiplicateur;
 			//draw_pixel(x1 , y1, window);
 			
 			// right line
 			if (j != data->width - 1)
 			{
+				// right
 				x2 = data->margin_left + (j + 1) * data->dist_pts_x;
-				y2 = data->margin_up + i * data->dist_pts_y + data->map[i][j + 1] * 10;
+				y2 = data->margin_up + i * data->dist_pts_y - data->points[i][j + 1].z * data->z_multiplicateur;
 				init_brensenham(x1, y1, x2, y2, window);
+				
+				
 			}
 			
 
 			// down line
 			if (i != data->height - 1)
 			{
-				ft_printf("LAAAU");
 				x2 = data->margin_left + j * data->dist_pts_x;
-				y2 = data->margin_up + (i + 1) * data->dist_pts_y + data->map[i + 1][j] * 10;
+				y2 = data->margin_up + (i + 1) * data->dist_pts_y - data->points[i + 1][j].z * data->z_multiplicateur;
 				init_brensenham(x1, y1, x2, y2, window);
 			}
-			
 
 		}
 	}
