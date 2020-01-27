@@ -25,6 +25,27 @@ int argument_checker(int argc, char **argv)
 	return (1);
 }
 
+int	ft_event(int key, t_windows *win)
+{
+	//key = 2;
+	//mlx_clear_window(win->windows, win->graph_id);
+	ft_printf("key == %d\n", key);
+	if (key == 126) // UP
+	{
+		ft_printf("UP\n");
+	}	
+	if (key == 125) // DOWN
+	{
+		ft_printf("down\n");
+	}
+	if (key == 53)
+	{
+		mlx_destroy_window(win->graph_id, win->windows);
+		exit(0);
+	}
+	return (0);
+}
+
 int main(int argc, char **argv)
 {
 	(void)argc;
@@ -36,8 +57,9 @@ int main(int argc, char **argv)
 	{
 		putmap(&map);
 		init_windows(&win, &map);
-		//bresenham(0, 0, 100, 1000, &win);
 		draw_map_pts(&win, &map);
+		mlx_key_hook(win.windows, ft_event, &win);
+		//mlx_hook(win.windows, 2, 0, ft_close_win, &win);
 		mlx_loop(win.graph_id);
 		free_map(&map);
 	}
