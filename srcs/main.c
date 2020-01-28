@@ -40,8 +40,9 @@ int	ft_event(int key, t_windows *win)
 	}
 	if (key == 53)
 	{
+		//mlx_clear_window(win->graph_id, win->windows);
 		mlx_destroy_window(win->graph_id, win->windows);
-		exit(0);
+		//exit(0);
 	}
 	return (0);
 }

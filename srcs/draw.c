@@ -15,7 +15,7 @@
 
 void    draw_pixel(int x, int y, t_windows *window)
 {
-    mlx_pixel_put(window->graph_id, window->windows, x, y, 0xE2EDEC);
+    mlx_pixel_put(window->graph_id, window->windows, x, y, window->color);
 }
 
 void draw_lines()
@@ -36,6 +36,7 @@ void	draw_map_pts(t_windows *window, t_map *data)
 
     (void)window;
 	i = -1;
+	window->color = 0xDC143C;
 	while (++i < data->height)
 	{
 		j = -1;
@@ -50,6 +51,9 @@ void	draw_map_pts(t_windows *window, t_map *data)
 			{
 				// right
 				x2 = data->margin_left + (j + 1) * data->dist_pts_x;
+				//ft_printf("data point = %d", )
+				//if (data->points[i][j + 1].z > 0 && data->points[i + 1][j].z > 0)
+				//	window->color = 0x00FFFF;
 				y2 = data->margin_up + i * data->dist_pts_y - data->points[i][j + 1].z * data->z_multiplicateur;
 				init_brensenham(x1, y1, x2, y2, window);
 				
@@ -60,6 +64,8 @@ void	draw_map_pts(t_windows *window, t_map *data)
 			// down line
 			if (i != data->height - 1)
 			{
+				//if (data->points[i + 1][j].z > 0 && data->points[i][j + 1].z > 0)
+				//	window->color = 0x00FFFF;
 				x2 = data->margin_left + j * data->dist_pts_x;
 				y2 = data->margin_up + (i + 1) * data->dist_pts_y - data->points[i + 1][j].z * data->z_multiplicateur;
 				init_brensenham(x1, y1, x2, y2, window);
