@@ -96,5 +96,6 @@ int init_map(t_map *map, char *map_file_path)
 	}
 	else
 		return(error(strerror(errno) , map_file_path));
+	ft_get_set_map(map);
 	return (1);
 }

@@ -13,6 +13,17 @@
 #include <mlx.h>
 #include "fdf.h"
 
+
+
+t_map *ft_get_set_map(t_map *map)
+{
+	static t_map *s = NULL;
+
+	if (map != NULL)
+		s = map;
+	return (s);
+}
+
 int min(int a, int b)
 {
 	return (a < b ? a : b);

@@ -73,7 +73,13 @@ typedef struct s_map
 void putmap(t_map *map);
 int max(int a, int b);
 int min(int a, int b);
+t_map *ft_get_set_map(t_map *map);
 
+
+/*
+ * event.c
+*/
+int	ft_event(int key, t_windows *win);
 
 /*
  * parseur.c
@@ -83,6 +89,7 @@ int init_map(t_map *map, char *map_file_path);
 /*
  * setup.c
 */
+void init_pov(t_map *data, t_windows *win);
 void init_windows(t_windows *new, t_map *data);
 
 
