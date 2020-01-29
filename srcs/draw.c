@@ -52,14 +52,7 @@ void	draw_map_pts(t_windows *window, t_map *data)
 			{
 				// right
 				x2 = data->margin_left + (j + 1) * data->dist_pts_x;
-<<<<<<< HEAD
 				y2 = data->margin_up + i * data->dist_pts_y + (data->angle_y == 0 ? 0 : data->points[i][j + 1].z * data->z_multiplicateur);
-=======
-				//ft_printf("data point = %d", )
-				//if (data->points[i][j + 1].z > 0 && data->points[i + 1][j].z > 0)
-				//	window->color = 0x00FFFF;
-				y2 = data->margin_up + i * data->dist_pts_y - data->points[i][j + 1].z * data->z_multiplicateur;
->>>>>>> 06d5762668b4cee3783dce2f3f8fdbabf1c36e99
 				init_brensenham(x1, y1, x2, y2, window);
 				
 				
@@ -69,8 +62,6 @@ void	draw_map_pts(t_windows *window, t_map *data)
 			// down line
 			if (i != data->height - 1)
 			{
-				//if (data->points[i + 1][j].z > 0 && data->points[i][j + 1].z > 0)
-				//	window->color = 0x00FFFF;
 				x2 = data->margin_left + j * data->dist_pts_x;
 				y2 = data->margin_up + (i + 1) * data->dist_pts_y + (data->angle_y == 0 ? 0 : data->points[i + 1][j].z * data->z_multiplicateur);
 				init_brensenham(x1, y1, x2, y2, window);
