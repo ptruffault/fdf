@@ -43,7 +43,7 @@ static void setup_points_color(t_map *map, char *current_word, int i, int j)
 
 	ptr = ft_strchr(current_word, ',');
 	color = ft_strdup(ptr ? ptr : "0xE2EDEC");
-	map->points[i][j].color = 0;
+	map->points[i][j].color = ft_atoi_hex(color);
 	ft_strdel(&color);
 }
 
