@@ -25,9 +25,13 @@ void init_windows(t_windows *new, t_map *data)
 	new->height = 1200;
 	new->windows = mlx_new_window(new->graph_id , new->width, new->height, "FDF");
 
+	data->angle_y = 45;
+	data->angle_x = 0;
+	data->angle_z = 0;
 	data->dist_pts_x = ((90 * min(new->width, new->height)) / 100) / max(data->width, data->height);
-	data->dist_pts_y = ((90 * min(new->width, new->height))  / 100) / max(data->width, data->height);
-	data->z_multiplicateur = 5;
+	data->dist_pts_y = (((90 - ft_abs(data->angle_y)) * min(new->width, new->height))  / 100) / max(data->width, data->height);
+
+	data->z_multiplicateur = data->angle_y >= 0 ? -5 : 5;
 
 	data->margin_up = (new->height - data->dist_pts_y * data->height) / 2;
 	//data->margin_down = (10 * new->height) / 100;

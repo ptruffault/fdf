@@ -50,6 +50,10 @@ typedef struct s_map
 	int		width;
 	int		height;
 	
+	int 	angle_x;
+	int		angle_y;
+	int		angle_z;
+
 	int 	dist_pts_x;
 	int 	dist_pts_y;
 	int 	z_multiplicateur;
