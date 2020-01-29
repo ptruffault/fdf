@@ -39,9 +39,12 @@ static int map_checker(char **file_content, t_map *map)
 static void setup_points_color(t_map *map, char *current_word, int i, int j)
 {
 	char *ptr;
+	char *color;
 
 	ptr = ft_strchr(current_word, ',');
-	map->points[i][j].color = ft_strdup(ptr ? ptr : "0xE2EDEC");
+	color = ft_strdup(ptr ? ptr : "0xE2EDEC");
+	map->points[i][j].color = ft_atoi_hex(color);
+	ft_strdel(&color);
 }
 
 static int setup_map(t_map *map, char **file_content)

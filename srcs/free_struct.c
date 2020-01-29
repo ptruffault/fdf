@@ -32,7 +32,6 @@ void free_map(t_map *map)
 		j = -1;
 		while (++j < map->width)
 		{
-			ft_strdel(&map->points[i][j].color);
 			free(&map->points[i][j]);
 		}
 		free(&map->points[i]);
