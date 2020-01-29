@@ -33,10 +33,6 @@ void	draw_map_pts(t_windows *window, t_map *data)
 	int j;
 	t_point a;
 	t_point b;
-	int x1;
-	int y1;
-	int x2;
-	int y2;
 
 	i = -1;
 	window->color = 0xDC143C;
