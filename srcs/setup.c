@@ -17,7 +17,7 @@
 void init_pov(t_map *data, t_windows *win){
 	data->dist_pts_x = (((90 - ft_abs(data->angle_x)) * min(win->width, win->height)) / 100) / max(data->width, data->height);
 	data->dist_pts_y = (((90 - ft_abs(data->angle_y)) * min(win->width, win->height))  / 100) / max(data->width, data->height);
-	data->z_multiplicateur = data->angle_y >= 0 ? -5 : 5;
+	data->z_multiplicateur = data->angle_y >= 0 ? -20 : 20;
 	data->margin_up = (win->height - data->dist_pts_y * data->height) / 2;
 	//data->margin_down = (10 * win->height) / 100;
 	data->margin_left = (win->width - data->dist_pts_x * data->width) / 2;;

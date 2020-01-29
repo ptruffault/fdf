@@ -35,16 +35,42 @@ static int map_checker(char **file_content, t_map *map)
 	return (1);
 }
 
+static int color_by_alt(int alt)
+{
+/*	if (alt < -100)
+		return ();
+	if (-100 <= alt && alt < -50)
+		return (0x00004d);
+	if (-50 <= alt && alt < -20)
+		return (0x000080);
+	if (-20 <= alt && alt < -10)
+		return (0x0000b3);
+	if (-10 <= alt && alt < -1)
+		return (0x);
+	if (0 <= alt && alt < 10)
+		return (0x);
+	if (10 <= alt && alt < 20)
+		return (0x);
+	if (20 <= alt && alt < 50)
+		return (0x);
+	if (50 <= alt && alt < 100)
+		return (0x);*/
+	return (ft_abs(999999 / ft_abs(alt + 1)));
+
+}
+
 
 static void setup_points_color(t_map *map, char *current_word, int i, int j)
 {
-	char *ptr;
-	char *color;
+	(void)current_word;
+	//char *ptr;
+	//char *color;
 
-	ptr = ft_strchr(current_word, ',');
-	color = ft_strdup(ptr ? ptr : "0xFF0000");
-	map->points[i][j].color = ft_atoi_hex(color);
-	ft_strdel(&color);
+	//ptr = ft_strchr(current_word, ',');
+	//color = ft_strdup(ptr ? ptr : color_by_alt(map->points[i][j].z));
+	//map->points[i][j].color = ft_atoi_hex(color);
+	//ft_strdel(&color);
+	map->points[i][j].color = color_by_alt(map->points[i][j].z);
 }
 
 static int setup_map(t_map *map, char **file_content)
