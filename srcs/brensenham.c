@@ -3,16 +3,18 @@
 void    go_brensenham(t_bresenham bre, t_windows *window, int increm, int h_v)
 {
     int color;
+    int median;
 
+    median = (bre.start + bre.stop) / 2;
     color = bre.color_a;
     while (bre.start <= bre.stop)
     {
-        if (bre.stop / 2 <= bre.start)
+        if (bre.start > median)
             color = bre.color_b;
         if (h_v == 0)
-            draw_pixel(bre.start, bre.p_increm, window);
+            draw_pixel(bre.start, bre.p_increm, window, color);
         else
-            draw_pixel(bre.p_increm, bre.start, window);
+            draw_pixel(bre.p_increm, bre.start, window, color);
         bre.e = bre.e + bre.m;
         if (bre.e >= 0)
         {
@@ -29,8 +31,9 @@ void    init_brensenham(t_point *a, t_point *b, t_windows *window)
 
     bre.dx = ft_abs(b->x - a->x);
     bre.dy = ft_abs(b->y - a->y);
-    bre.color_a = (int)a->color;
-    bre.color_b = (int)b->color;
+    bre.color_a = a->color;
+    bre.color_b = b->color;
+   // ft_printf("color == %d || %d\n", b->color, a->color);
     if (bre.dx >= bre.dy)
     {
         bre.start = a->x;

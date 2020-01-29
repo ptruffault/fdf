@@ -94,7 +94,7 @@ void free_map(t_map *map);
 /*
  * draw
 */
-void    draw_pixel(int x, int y, t_windows *window);
+void    draw_pixel(int x, int y, t_windows *window, int color);
 void	draw_map_pts(t_windows *window, t_map *data);
 void    go_brensenham(t_bresenham bre, t_windows *window, int increm, int h_v);
 void    init_brensenham(t_point *a, t_point *b, t_windows *window);

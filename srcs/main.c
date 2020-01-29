@@ -32,6 +32,8 @@ int	ft_event(int key, t_windows *win)
 	ft_printf("key == %d\n", key);
 	if (key == 126) // UP
 	{
+		mlx_clear_window(win->graph_id, win->windows);
+		
 		ft_printf("UP\n");
 	}	
 	if (key == 125) // DOWN

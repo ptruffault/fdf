@@ -13,9 +13,9 @@
 #include "fdf.h"
 #include <unistd.h>
 
-void    draw_pixel(int x, int y, t_windows *window)
+void    draw_pixel(int x, int y, t_windows *window, int color)
 {
-    mlx_pixel_put(window->graph_id, window->windows, x, y, window->color);
+    mlx_pixel_put(window->graph_id, window->windows, x, y, color);
 }
 
 void draw_lines()
