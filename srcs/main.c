@@ -14,7 +14,7 @@
 #include <mlx.h>
 
 
-int argument_checker(int argc, char **argv)
+static int argument_checker(int argc, char **argv)
 {
 	if (argc == 1)
 		return(error("No map given", "fdf need a map file path as argument. This map as to be a .fdf extention file."));
@@ -23,30 +23,6 @@ int argument_checker(int argc, char **argv)
 	else if (!ft_str_endwith(argv[1], ".fdf"))
 		return (error("Wrong map format", "fdf requiere a .fdf map format file."));
 	return (1);
-}
-
-int	ft_event(int key, t_windows *win)
-{
-	//key = 2;
-	//mlx_clear_window(win->windows, win->graph_id);
-	ft_printf("key == %d\n", key);
-	if (key == 126) // UP
-	{
-		mlx_clear_window(win->graph_id, win->windows);
-		
-		ft_printf("UP\n");
-	}	
-	if (key == 125) // DOWN
-	{
-		ft_printf("down\n");
-	}
-	if (key == 53)
-	{
-		//mlx_clear_window(win->graph_id, win->windows);
-		mlx_destroy_window(win->graph_id, win->windows);
-		//exit(0);
-	}
-	return (0);
 }
 
 int main(int argc, char **argv)

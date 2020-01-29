@@ -20,6 +20,7 @@ SRC		:=	\
 	free_struct.c  \
 	draw.c \
 	brensenham.c \
+	event.c
 	
 
 SRCDIR	:=	srcs

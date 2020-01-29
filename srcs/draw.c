@@ -35,13 +35,14 @@ void	draw_map_pts(t_windows *window, t_map *data)
 	t_point b;
 
 	i = -1;
+	init_pov(data, window);
 	window->color = 0xDC143C;
 	while (++i < data->height)
 	{
 		j = -1;
 		while (++j < data->width)
 		{
-			a.x = data->margin_left + j  * data->dist_pts_x;
+			a.x = data->margin_left + j  * data->dist_pts_x + (data->angle_x == 0 ? 0 : data->points[i][j].z * data->z_multiplicateur);
 			a.y = data->margin_up + i * data->dist_pts_y + (data->angle_y == 0 ? 0 : data->points[i][j].z * data->z_multiplicateur);
 			a.color = data->points[i][j].color;
 
@@ -49,7 +50,7 @@ void	draw_map_pts(t_windows *window, t_map *data)
 			if (j != data->width - 1)
 			{
 				// right
-				b.x = data->margin_left + (j + 1) * data->dist_pts_x;
+				b.x = data->margin_left + (j + 1) * data->dist_pts_x + (data->angle_x == 0 ? 0 : data->points[i][j + 1].z * data->z_multiplicateur);
 				b.y = data->margin_up + i * data->dist_pts_y + (data->angle_y == 0 ? 0 : data->points[i][j + 1].z * data->z_multiplicateur);
 				b.color = data->points[i][j + 1].color;
 				init_brensenham(&a, &b, window);
@@ -58,7 +59,7 @@ void	draw_map_pts(t_windows *window, t_map *data)
 			// down line
 			if (i != data->height - 1)
 			{
-				b.x = data->margin_left + j * data->dist_pts_x;
+				b.x = data->margin_left + j * data->dist_pts_x + (data->angle_x == 0 ? 0 : data->points[i + 1][j].z * data->z_multiplicateur);
 				b.y = data->margin_up + (i + 1) * data->dist_pts_y + (data->angle_y == 0 ? 0 : data->points[i + 1][j].z * data->z_multiplicateur);
 				b.color = data->points[i + 1][j].color;
 				init_brensenham(&a, &b, window);
