@@ -30,6 +30,7 @@ typedef struct s_windows
 	void	*windows;
 	int		width;
 	int		height;
+	int		color;
 } t_windows;
 
 typedef struct  s_bresenham
