@@ -18,7 +18,8 @@ static void rotation_x(int sens, t_windows *win)
 
 	data = ft_get_set_map(NULL);
 	ft_printf("%i\n", data->angle_y );
-	data->angle_x += sens * 5;
+	if (-90 <= data->angle_x + sens && data->angle_x + sens <= 90)
+		data->angle_x += sens;
 	mlx_clear_window(win->graph_id, win->windows);
 	draw_map_pts(win, data);
 }
@@ -29,7 +30,8 @@ static void rotation_y(int sens, t_windows *win)
 
 	data = ft_get_set_map(NULL);
 	ft_printf("%i\n", data->angle_y );
-	data->angle_y += sens * 5;
+	if (-90 <= data->angle_y + sens && data->angle_y + sens <= 90)
+		data->angle_y += sens;
 	mlx_clear_window(win->graph_id, win->windows);
 	draw_map_pts(win, data);
 }
@@ -41,13 +43,13 @@ int	ft_event(int key, t_windows *win)
 	//mlx_clear_window(win->windows, win->graph_id);
 	ft_printf("key == %d\n", key);
 	if (key == 126)
-		rotation_y(-1, win);
+		rotation_y(-5, win);
 	if (key == 125)
-		rotation_y(1, win);
+		rotation_y(5, win);
 	if (key == 123)
-		rotation_x(1, win);
+		rotation_x(5, win);
 	if (key == 124)
-		rotation_x(-1, win);
+		rotation_x(-5, win);
 
 
 	if (key == 53)
