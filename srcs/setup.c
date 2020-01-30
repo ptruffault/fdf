@@ -29,8 +29,8 @@ void init_windows(t_windows *new, t_map *data)
 {
 	ft_bzero(new, sizeof(t_windows));
 	new->graph_id = mlx_init();
-	new->width = 1800;
-	new->height = 1200;
+	new->width = 1000;
+	new->height = 500;
 	new->windows = mlx_new_window(new->graph_id , new->width, new->height, "FDF");
 	data->angle_y = 0;
 	data->angle_x = 0;

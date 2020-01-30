@@ -28,6 +28,8 @@ typedef struct s_windows
 {
 	void	*graph_id;
 	void	*windows;
+	void	*img_ptr;
+	unsigned char	*img_str;
 	int		width;
 	int		height;
 	int		color;
@@ -105,5 +107,7 @@ void    draw_pixel(int x, int y, t_windows *window, int color);
 void	draw_map_pts(t_windows *window, t_map *data);
 void    go_brensenham(t_bresenham bre, t_windows *window, int increm, int h_v);
 void    init_brensenham(t_point *a, t_point *b, t_windows *window);
+void	draw_new_map(t_windows *win, t_map *map);
+
 
 #endif

@@ -21,7 +21,8 @@ static void rotation_x(int sens, t_windows *win)
 	if (-90 <= data->angle_x + sens && data->angle_x + sens <= 90)
 		data->angle_x += sens;
 	mlx_clear_window(win->graph_id, win->windows);
-	draw_map_pts(win, data);
+	mlx_destroy_image(win->graph_id, win->img_ptr);
+	draw_new_map(win, data);
 }
 
 static void rotation_y(int sens, t_windows *win)
@@ -33,7 +34,8 @@ static void rotation_y(int sens, t_windows *win)
 	if (-90 <= data->angle_y + sens && data->angle_y + sens <= 90)
 		data->angle_y += sens;
 	mlx_clear_window(win->graph_id, win->windows);
-	draw_map_pts(win, data);
+	mlx_destroy_image(win->graph_id, win->img_ptr);
+	draw_new_map(win, data);
 }
 
 

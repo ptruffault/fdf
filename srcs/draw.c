@@ -15,6 +15,13 @@
 
 void    draw_pixel(int x, int y, t_windows *window, int color)
 {
+	int pixel;
+
+	pixel = (x * 4) + (4 * window->width * y);
+	window->img_str[pixel]  = 0;
+	window->img_str[pixel + 1] = 0;
+	window->img_str[pixel + 2] = 255;
+	(void)color;
     mlx_pixel_put(window->graph_id, window->windows, x, y, color);
 }
 
@@ -68,3 +75,17 @@ void	draw_map_pts(t_windows *window, t_map *data)
 		}
 	}
 }
+
+void	draw_new_map(t_windows *win, t_map *map)
+{
+	int bpp;
+	int s_l;
+	int endian;
+
+	win->img_ptr = mlx_new_image(win->graph_id, win->width, win->height);
+	win->img_str = (unsigned char*)mlx_get_data_addr(win->img_ptr, &bpp, &s_l, &endian);
+
+	draw_map_pts(win, map);
+	mlx_put_image_to_window(win->graph_id, win->windows, win->img_ptr, 0,0);
+}
+
