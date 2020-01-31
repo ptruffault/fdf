@@ -22,6 +22,9 @@ void    draw_pixel(int x, int y, t_windows *window, int color)
 	window->img_str[pixel + 1] = 0;
 	window->img_str[pixel + 2] = 255;
 	(void)color;
+
+    //mlx_pixel_put(window->graph_id, window->windows, x, y, color);
+
 }
 
 void draw_lines()
