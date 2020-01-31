@@ -55,8 +55,7 @@ static int color_by_alt(int alt)
 		return (0x);
 	if (50 <= alt && alt < 100)
 		return (0x);*/
-	return (ft_abs(0xfffffff / ft_abs(alt + 1)));
-
+	return ((alt * 100) + 1000);
 }
 
 
