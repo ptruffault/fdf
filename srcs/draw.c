@@ -33,7 +33,7 @@ void draw_lines()
 
 int angle_check(int angle)
 {
-	return (angle == - 180 || angle == 0 || angle == 180);
+	return (angle == -180 || angle == 0);
 }
 
 
