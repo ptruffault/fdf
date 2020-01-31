@@ -25,10 +25,41 @@ void    go_brensenham(t_bresenham bre, t_windows *window, int increm, int h_v)
     }
 }
 
-/*void    put_bre(t_point *a, t_point *b, t_bresenham *bre, t_windows *win)
+void    put_bre_for_a(t_point *a, t_point *b, t_bresenham *bre)
 {
+    if (a->x <= b->x)
+        {
+            bre->start = a->x;
+            bre->stop = b->x;
+        }
+        else
+        {
+            bre->start = b->x;
+            bre->stop = a->x;
+        }
+        bre->p_increm = a->y;
+        bre->e = -bre->dx;
+        bre->m = bre->dy * 2;
+        bre->sub = -bre->dx * 2;
+}
 
-}*/
+void    put_bre_for_b(t_point *a, t_point *b, t_bresenham *bre)
+{
+    if (a->y <= b->y)
+        {
+            bre->start = a->y;
+            bre->stop = b->y;
+        }
+        else
+        {
+            bre->start = b->y;
+            bre->stop = a->y;
+        }
+        bre->p_increm = a->x;
+        bre->e = -bre->dy;
+        bre->m = bre->dx * 2;
+        bre->sub = -bre->dy * 2;
+}
 
 void    init_brensenham(t_point *a, t_point *b, t_windows *window)
 {
@@ -40,21 +71,7 @@ void    init_brensenham(t_point *a, t_point *b, t_windows *window)
     bre.color_b = b->color;
     if (bre.dx >= bre.dy)
     {
-        //put_bre(a, b, &bre, window);
-        if (a->x <= b->x)
-        {
-            bre.start = a->x;
-            bre.stop = b->x;
-        }
-        else
-        {
-            bre.start = b->x;
-            bre.stop = a->x;
-        }
-        bre.p_increm = a->y;
-        bre.e = -bre.dx;
-        bre.m = bre.dy * 2;
-        bre.sub = -bre.dx * 2;
+        put_bre_for_a(a, b, &bre);
         if (b->y >= a->y)
             go_brensenham(bre, window, 1, 0);
         else
@@ -62,20 +79,7 @@ void    init_brensenham(t_point *a, t_point *b, t_windows *window)
     }
     else
     {
-        if (a->y <= b->y)
-        {
-            bre.start = a->y;
-            bre.stop = b->y;
-        }
-        else
-        {
-            bre.start = b->y;
-            bre.stop = a->y;
-        }
-        bre.p_increm = a->x;
-        bre.e = -bre.dy;
-        bre.m = bre.dx * 2;
-        bre.sub = -bre.dy * 2;
+        put_bre_for_b(a, b, &bre);
         if (b->x >= a->x)
             go_brensenham(bre, window, 1, 1);
         else

@@ -6,13 +6,12 @@
 /*   By: ptruffau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 18:44:19 by ptruffau          #+#    #+#             */
-/*   Updated: 2020/01/31 16:39:25 by yodana           ###   ########.fr       */
+/*   Updated: 2020/01/21 18:44:25 by ptruffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <mlx.h>
-
 
 static int argument_checker(int argc, char **argv)
 {
