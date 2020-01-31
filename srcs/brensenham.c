@@ -14,7 +14,7 @@ void    go_brensenham(t_bresenham bre, t_windows *window, int increm, int h_v)
         if (h_v == 0)
             draw_pixel(bre.start, bre.p_increm, window, color);
         else
-            draw_pixel(bre.p_increm, bre.start, window, color);
+           draw_pixel(bre.p_increm, bre.start, window, color);
         bre.e = bre.e + bre.m;
         if (bre.e >= 0)
         {
@@ -25,6 +25,11 @@ void    go_brensenham(t_bresenham bre, t_windows *window, int increm, int h_v)
     }
 }
 
+/*void    put_bre(t_point *a, t_point *b, t_bresenham *bre, t_windows *win)
+{
+
+}*/
+
 void    init_brensenham(t_point *a, t_point *b, t_windows *window)
 {
     t_bresenham bre;
@@ -33,11 +38,19 @@ void    init_brensenham(t_point *a, t_point *b, t_windows *window)
     bre.dy = ft_abs(b->y - a->y);
     bre.color_a = a->color;
     bre.color_b = b->color;
-   // ft_printf("color == %d || %d\n", b->color, a->color);
     if (bre.dx >= bre.dy)
     {
-        bre.start = a->x;
-        bre.stop = b->x;
+        //put_bre(a, b, &bre, window);
+        if (a->x <= b->x)
+        {
+            bre.start = a->x;
+            bre.stop = b->x;
+        }
+        else
+        {
+            bre.start = b->x;
+            bre.stop = a->x;
+        }
         bre.p_increm = a->y;
         bre.e = -bre.dx;
         bre.m = bre.dy * 2;
@@ -49,8 +62,16 @@ void    init_brensenham(t_point *a, t_point *b, t_windows *window)
     }
     else
     {
-        bre.start = a->y;
-        bre.stop = b->y;
+        if (a->y <= b->y)
+        {
+            bre.start = a->y;
+            bre.stop = b->y;
+        }
+        else
+        {
+            bre.start = b->y;
+            bre.stop = a->y;
+        }
         bre.p_increm = a->x;
         bre.e = -bre.dy;
         bre.m = bre.dx * 2;
