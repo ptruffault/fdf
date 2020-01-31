@@ -57,7 +57,8 @@ typedef struct s_map
 	
 	int 	angle_x;
 	int		angle_y;
-	int		angle_z;
+	int 	sens_x;
+	int 	sens_y;
 
 	int 	dist_pts_x;
 	int 	dist_pts_y;
