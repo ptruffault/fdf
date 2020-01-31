@@ -33,7 +33,10 @@ void draw_lines()
 }
 
 
-
+int angle_check(int angle)
+{
+	return (angle == - 180 || angle == 0 || angle == 180);
+}
 
 
 void	draw_map_pts(t_windows *window, t_map *data)
@@ -51,8 +54,8 @@ void	draw_map_pts(t_windows *window, t_map *data)
 		j = -1;
 		while (++j < data->width)
 		{
-			a.x = data->margin_left + j  * data->dist_pts_x + (data->angle_x == 0 ? 0 : data->points[i][j].z * data->z_multiplicateur * data->sens_x);
-			a.y = data->margin_up + i * data->dist_pts_y + (data->angle_y == 0 ? 0 : data->points[i][j].z * data->z_multiplicateur * data->sens_y);
+			a.x = data->margin_left + j * data->dist_pts_x + (angle_check(data->angle_x) ? 0 : data->points[i][j].z * data->z_multiplicateur * data->sens_x);
+			a.y = data->margin_up + i * data->dist_pts_y + (angle_check(data->angle_y) ? 0 : data->points[i][j].z * data->z_multiplicateur * data->sens_y);
 			a.color = data->points[i][j].color;
 
 
@@ -60,18 +63,17 @@ void	draw_map_pts(t_windows *window, t_map *data)
 			if (j != data->width - 1)
 			{
 				// right
-				b.x = data->margin_left + (j + 1) * data->dist_pts_x + (data->angle_x == 0 ? 0 : data->points[i][j + 1].z * data->z_multiplicateur * data->sens_x);
-				b.y = data->margin_up + i * data->dist_pts_y + (data->angle_y == 0 ? 0 : data->points[i][j + 1].z * data->z_multiplicateur * data->sens_y);
+				b.x = data->margin_left + (j + 1) * data->dist_pts_x + (angle_check(data->angle_x) ? 0 : data->points[i][j + 1].z * data->z_multiplicateur * data->sens_x);
+				b.y = data->margin_up + i * data->dist_pts_y + (angle_check(data->angle_y)  ? 0 : data->points[i][j + 1].z * data->z_multiplicateur * data->sens_y);
 				b.color = data->points[i][j + 1].color;
 				init_brensenham(&a, &b, window);
 			}
 
 			// down line
 			if (i != data->height - 1)
-			{
-				
-				b.x = data->margin_left + j * data->dist_pts_x + (data->angle_x == 0 ? 0 : data->points[i + 1][j].z * data->z_multiplicateur * data->sens_x);
-				b.y = data->margin_up + (i + 1) * data->dist_pts_y + (data->angle_y == 0 ? 0 : data->points[i + 1][j].z * data->z_multiplicateur * data->sens_y);
+			{	
+				b.x = data->margin_left + j * data->dist_pts_x + (angle_check(data->angle_x) ? 0 : data->points[i + 1][j].z * data->z_multiplicateur * data->sens_x);
+				b.y = data->margin_up + (i + 1) * data->dist_pts_y + (angle_check(data->angle_x) ? 0 : data->points[i + 1][j].z * data->z_multiplicateur * data->sens_y);
 				b.color = data->points[i + 1][j].color;
 				init_brensenham(&a, &b, window);
 			}
