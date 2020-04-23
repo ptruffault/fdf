@@ -34,23 +34,25 @@ DEPDIR		:=	$(BUILDDIR)/dep
 
 #### LIBRARY ####
 # MinilibX
-MINILIBX		:=	libmlx.a
+
 
 ifeq ($(UNAME), Darwin)
+	MINILIBX		:=	libmlx.a
 	MINILIBX_PATH :=  $(LIBDIR)/minilibx-macos
-	MINILIBX_LINK :=  -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
-	MINILIBX_INC  := -I $(MINILIBX_PATH)
+	MINILIBX_LINK :=  -L/usr/local/lib/  -lmlx -framework OpenGL -framework AppKit
+	MINILIBX_INC  := -I $(MINILIBX_PATH)-I/usr/local/include
 else
+	MINILIBX		:=	libmlx_Linux.a
 	MINILIBX_PATH :=  $(LIBDIR)/minilibx-linux
-	MINILIBX_LINK := -L $(MINILIBX_PATH) -lmlx -lX11 -lm -lbsd 
-	MINILIBX_INC  := -I $(MINILIBX_PATH)
+	MINILIBX_LINK := -L $(MINILIBX_PATH) -lmlx  -L/usr/include/../lib -lXext -lX11 -lm -lbsd
+	MINILIBX_INC  := -I $(MINILIBX_PATH) -I/usr/local/include
 endif
 
 
 # Libft
 LIBFT		:=	libft.a
 LIBFT_PATH	:= $(LIBDIR)/libft
-LIB_LINK	+= -L $(LIBFT_PATH) -l ft
+LIB_LINK	+= -L $(LIBFT_PATH) -lft
 LIB_INC		+= -I $(LIBFT_PATH)/includes
 
 #### COMPILER ####
