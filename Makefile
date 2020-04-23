@@ -38,16 +38,19 @@ MINILIBX		:=	libmlx.a
 
 ifeq ($(UNAME), Darwin)
 	MINILIBX_PATH :=  $(LIBDIR)/minilibx-macos
+	MINILIBX_LINK :=  -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
+	MINILIBX_INC  := -I $(MINILIBX_PATH)
 else
 	MINILIBX_PATH :=  $(LIBDIR)/minilibx-linux
+	MINILIBX_LINK := -L $(MINILIBX_PATH) -l mlx 
+	MINILIBX_INC  := -I $(MINILIBX_PATH)
 endif
-LIB_LINK		:= -L $(MINILIBX_PATH) -l mlx 
-LIB_INC			:= -I $(MINILIBX_PATH)/inc
+
 
 # Libft
 LIBFT		:=	libft.a
 LIBFT_PATH	:= $(LIBDIR)/libft
-LIB_LINK	+= -L $(LIBFT_PATH) -l ft -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
+LIB_LINK	+= -L $(LIBFT_PATH) -l ft
 LIB_INC		+= -I $(LIBFT_PATH)/includes
 
 #### COMPILER ####
