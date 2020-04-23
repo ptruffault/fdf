@@ -35,7 +35,12 @@ DEPDIR		:=	$(BUILDDIR)/dep
 #### LIBRARY ####
 # MinilibX
 MINILIBX		:=	libmlx.a
-MINILIBX_PATH :=  $(LIBDIR)/minilibx_macos
+ifeq ($(UNAME), Linux)
+	MINILIBX_PATH :=  $(LIBDIR)/minilibx-linux
+endif
+ifeq ($(UNAME), Darwin)
+	MINILIBX_PATH :=  $(LIBDIR)/minilibx-macos
+endif
 LIB_LINK		:= -L $(MINILIBX_PATH) -l mlx 
 LIB_INC			:= -I $(MINILIBX_PATH)/inc
 
