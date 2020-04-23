@@ -107,10 +107,10 @@ $(OBJDIR)/%.o:	$(SRCDIR)/%.c | $(OBJDIR) $(DEPDIR)
 			> $(subst $(SRCDIR), $(DEPDIR), $(<:.c=.d))
 
 $(LIBFT_PATH)/$(LIBFT):
-	@ $(MAKE) -C $(LIBFT_PATH) --no-print-directory
+	@ $(MAKE) -C $(LIBFT_PATH) 
 
 $(MINILIBX_PATH)/$(MINILIBX):
-	@ $(MAKE) -C $(MINILIBX_PATH) --no-print-directory
+	@ $(MAKE) -C $(MINILIBX_PATH) 
 
 # Dir created to store build cache
 $(OBJDIR):
@@ -140,12 +140,12 @@ lfclean: lclean
 
 #### MANDATORY ####
 clean: lclean
-	@ $(MAKE) -C $(LIBFT_PATH) --no-print-directory clean
-	@ $(MAKE) -C $(MINILIBX_PATH) --no-print-directory clean
+	@ $(MAKE) -C $(LIBFT_PATH)  clean
+	@ $(MAKE) -C $(MINILIBX_PATH)  clean
 
 fclean:	lfclean
-	@ $(MAKE) -C $(LIBFT_PATH) --no-print-directory fclean
-	@ $(MAKE) -C $(MINILIBX_PATH) --no-print-directory clean
+	@ $(MAKE) -C $(LIBFT_PATH)  fclean
+	@ $(MAKE) -C $(MINILIBX_PATH)  clean
 
 re:	fclean all
 
