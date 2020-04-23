@@ -42,7 +42,7 @@ ifeq ($(UNAME), Darwin)
 	MINILIBX_INC  := -I $(MINILIBX_PATH)
 else
 	MINILIBX_PATH :=  $(LIBDIR)/minilibx-linux
-	MINILIBX_LINK := -L $(MINILIBX_PATH) -l mlx 
+	MINILIBX_LINK := -L $(MINILIBX_PATH) -lmlx -lX11 -lm -lbsd 
 	MINILIBX_INC  := -I $(MINILIBX_PATH)
 endif
 
