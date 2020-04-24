@@ -44,7 +44,7 @@ ifeq ($(UNAME), Darwin)
 else
 	MINILIBX		:=	libmlx_Linux.a
 	MINILIBX_PATH :=  $(LIBDIR)/minilibx-linux
-	MINILIBX_LINK := -L $(MINILIBX_PATH) -lmlx  -L/usr/include/../lib -lXext -lX11 -lm -lbsd
+	MINILIBX_LINK := -L $(MINILIBX_PATH) -lmlx  -L /usr/include/ -lXext -lX11 -lm -lbsd
 	MINILIBX_INC  := -I $(MINILIBX_PATH) -I/usr/local/include
 endif
 
