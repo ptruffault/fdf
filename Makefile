@@ -22,6 +22,8 @@ SRC		:=	\
 	brensenham.c \
 	event.c
 	
+DEFLT_COMMIT := "Fix some shity code"
+
 
 SRCDIR	:=	srcs
 INCDIR	:=	includes
@@ -160,7 +162,7 @@ exe: all
 
 
 save: fclean
-	@ git add --all && git commit -m "make save" && git pull
+	@ git add --all && git commit -m $(DEFLT_COMMIT) && git pull
 	@ git push
 
 
