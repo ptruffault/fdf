@@ -13,7 +13,7 @@
 #ifndef FDF_H
 # define FDF_H
 # include "libft.h"
-# include "../lib/minilibx-linux/mlx.h"
+# include "mlx.h"
 
 
 typedef struct s_point

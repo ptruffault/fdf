@@ -44,10 +44,10 @@ ifeq ($(UNAME), Darwin)
 	MINILIBX_LINK :=  -L/usr/local/lib/  -lmlx -framework OpenGL -framework AppKit
 	MINILIBX_INC  := -I $(MINILIBX_PATH)-I/usr/local/include
 else
-	MINILIBX		:=	libmlx_Linux.a
+	MINILIBX		:=	libmlx.a
 	MINILIBX_PATH :=  $(LIBDIR)/minilibx-linux
-	MINILIBX_LINK := -L $(MINILIBX_PATH) -lmlx  -L /usr/include/ -lXext -lX11 -lm -lbsd
-	MINILIBX_INC  := -I $(MINILIBX_PATH) -I/usr/local/include
+	MINILIBX_LINK := -L $(MINILIBX_PATH) -lmlx  -L /usr/include/ -lXext -lX11 -lm -lbsd 
+	MINILIBX_INC  := -I $(MINILIBX_PATH) -I /usr/include
 endif
 
 
@@ -60,7 +60,7 @@ LIB_INC		+= -I $(LIBFT_PATH)/includes
 #### COMPILER ####
 CC			?=	cc
 
-INCFLAG		:=	-I $(INCDIR) $(LIB_INC)
+INCFLAG		:=	-I $(INCDIR) $(LIB_INC) $(MINILIBX_INC) 
 
 WFLAGS		?=	-Wall -Wextra -Werror -pedantic
 CFLAGS		=	$(WFLAGS) $(INCFLAG) $(STDFLAG)
@@ -69,7 +69,7 @@ DEPGEN		:=	$(CC)
 DEPFLAG		:=	-MM $(INCFLAG)
 
 LD			:=	$(CC)
-LDFLAG		=	$(LIB_LINK) -ltermcap
+LDFLAG		=	$(LIB_LINK) $(MINILIBX_LINK)
 LDFLAG		+=	-Wno-unused-command-line-argument $(WFLAGS)
 
 #############################
@@ -99,16 +99,13 @@ KO			= 		$(NO_COLOR)[\033[00;31mKO$(NO_COLOR)]
 #############################
 #### COMPILE ####
 all: $(NAME)
-	echo $(MINILIBX_PATH);
 
 $(NAME):	$(OBJ) $(LIBFT_PATH)/$(LIBFT) $(MINILIBX_PATH)/$(MINILIBX)
-	@ echo "$(OP_COLOR) building $(NAME)$(NO_COLOR)"
-	@ $(LD) -o $(NAME) $(OBJ) $(LDFLAG)
-	@ printf "$(DONE)$(OP_COLOR)$(NAME)$(NO_COLOR)\n"
+	@$(LD) -o $(NAME) $(OBJ) $(LDFLAG)
 
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c | $(OBJDIR) $(DEPDIR)
-	@ $(CC) -c $< $(CFLAGS) -o $@ \
+	 $(CC) -c $< $(CFLAGS) -o $@ \
 		&& printf "$(DONE)	: $(COLOR)$<$(NO_COLOR)\n" \
 		|| (printf "$(KO)	<-  $(COLOR)$<$(NO_COLOR)\n" ; false)
 	@ $(DEPGEN) -c $< $(DEPFLAG) -MQ $@ \
