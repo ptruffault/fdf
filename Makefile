@@ -44,7 +44,6 @@ ifeq ($(UNAME), Darwin)
 	MINILIBX_LINK :=  -L/usr/local/lib/  -lmlx -framework OpenGL -framework AppKit
 	MINILIBX_INC  := -I $(MINILIBX_PATH)-I/usr/local/include
 else
-	@ echo 'HERE I AM';
 	MINILIBX		:=	libmlx_Linux.a
 	MINILIBX_PATH :=  $(LIBDIR)/minilibx-linux
 	MINILIBX_LINK := -L $(MINILIBX_PATH) -lmlx  -L /usr/include/ -lXext -lX11 -lm -lbsd
@@ -100,6 +99,7 @@ KO			= 		$(NO_COLOR)[\033[00;31mKO$(NO_COLOR)]
 #############################
 #### COMPILE ####
 all: $(NAME)
+	echo $(MINILIBX_PATH);
 
 $(NAME):	$(OBJ) $(LIBFT_PATH)/$(LIBFT) $(MINILIBX_PATH)/$(MINILIBX)
 	@ echo "$(OP_COLOR) building $(NAME)$(NO_COLOR)"
