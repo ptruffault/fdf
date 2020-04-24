@@ -70,7 +70,7 @@ DEPFLAG		:=	-MM $(INCFLAG)
 
 LD			:=	$(CC)
 LDFLAG		=	$(LIB_LINK) -ltermcap
-LDFLAG		+=	-Wno-unused-command-line-argument $(WFLAGS)
+LDFLAG		+=	-Wno-unused-command-line-argument $(CFLAGS)
 
 #############################
 #    MAKEFILE VARIABLES     #
@@ -99,11 +99,10 @@ KO			= 		$(NO_COLOR)[\033[00;31mKO$(NO_COLOR)]
 #############################
 #### COMPILE ####
 all: $(NAME)
-	echo $(MINILIBX_PATH);
 
 $(NAME):	$(OBJ) $(LIBFT_PATH)/$(LIBFT) $(MINILIBX_PATH)/$(MINILIBX)
 	@ echo "$(OP_COLOR) building $(NAME)$(NO_COLOR)"
-	@ $(LD) -o $(NAME) $(OBJ) $(LDFLAG)
+	 $(LD) -o $(NAME) $(OBJ) $(LDFLAG)
 	@ printf "$(DONE)$(OP_COLOR)$(NAME)$(NO_COLOR)\n"
 
 
