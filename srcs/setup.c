@@ -28,9 +28,9 @@ void init_pov(t_map *data, t_windows *win){
 void init_windows(t_windows *win, t_map *data)
 {
 	ft_bzero(win, sizeof(t_windows));
-	win->graph_id = mlx_init();
-	win->width = 1800;
-	win->height = 1200;
+	//win->graph_id = mlx_init();
+	win->width = 700;
+	win->height = 500;
 	win->windows = mlx_new_window(win->graph_id , win->width, win->height, "FDF");
 	data->angle_y = 0;
 	data->angle_x = 0;
@@ -40,4 +40,5 @@ void init_windows(t_windows *win, t_map *data)
 	data->dist_pts_x = (((90 - ft_abs(data->angle_x)) * min(win->width, win->height)) / 100) / max(data->width, data->height);
 	data->dist_pts_y = (((90 - ft_abs(data->angle_y)) * min(win->width, win->height))  / 100) / max(data->width, data->height);
 	init_pov(data, win);
+
 }
