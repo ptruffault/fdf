@@ -21,7 +21,9 @@ void    draw_pixel(int x, int y, t_windows *window, int color)
 
 	hex = color;
 	if (window){
+		ft_printf("draw_pixel x = %i y = %i\n", x, y);
 		pixel = (x * 4) + (4 * window->width * y);
+		ft_printf("pixel = %i\n", pixel);
 		window->img_str[pixel]  = hex / 64;
 		window->img_str[pixel + 1] = hex / 32;
 		window->img_str[pixel + 2] = hex / 16;
@@ -65,7 +67,7 @@ void	draw_map_pts(t_windows *window, t_map *data)
 
 
 			// right line
-			if (j != data->width - 1)
+			if (i != data->height - 1)
 			{
 				// right
 				b.x = data->margin_left + (j + 1) * data->dist_pts_x;
@@ -77,7 +79,7 @@ void	draw_map_pts(t_windows *window, t_map *data)
 			}
 
 			// down line
-			if (i != data->height - 1)
+			if (j != data->width - 1)
 			{	
 				b.x = data->margin_left + j * data->dist_pts_x;
 				b.y = data->margin_up + (i + 1) * data->dist_pts_y;
