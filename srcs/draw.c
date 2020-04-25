@@ -20,11 +20,12 @@ void    draw_pixel(int x, int y, t_windows *window, int color)
 	int hex;
 
 	hex = color;
-	pixel = (x * 4) + (4 * window->width * y);
-	window->img_str[pixel]  = hex / 64;
-	window->img_str[pixel + 1] = hex / 32;
-	window->img_str[pixel + 2] = hex / 16;
-
+	if (window){
+		pixel = (x * 4) + (4 * window->width * y);
+		window->img_str[pixel]  = hex / 64;
+		window->img_str[pixel + 1] = hex / 32;
+		window->img_str[pixel + 2] = hex / 16;
+	}
 }
 void draw_lines()
 {
