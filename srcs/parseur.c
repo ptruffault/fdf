@@ -83,7 +83,7 @@ static int setup_map(t_map *map, char **file_content)
 	{
 		if (!(words = ft_strsplit_whitespace(file_content[i])))
 			return (error("setup_map filure:", "allocation"));
-		if (!(map->points[i] = (t_point *)malloc(sizeof(t_point) * map->width)))
+		if (!(map->points[i] = (t_point *)malloc(sizeof(t_point) * (map->width + 1))))
 		{
 			ft_freestrarr(words);
 			return (error("setup_map filure:", "allocation"));
