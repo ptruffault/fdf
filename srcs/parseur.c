@@ -99,6 +99,7 @@ static int setup_map(t_map *map, char **file_content)
 		}
 		ft_freestrarr(words);
 	}
+	map->points[i] = NULL;
 	return (1);
 }
 

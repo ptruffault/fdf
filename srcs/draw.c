@@ -92,7 +92,7 @@ void	draw_map_pts(t_windows *window, t_map *data)
 		}
 	}
 }
-
+ 
 void	draw_new_map(t_windows *win, t_map *map)
 {
 	int bpp;
