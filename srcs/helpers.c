@@ -39,7 +39,6 @@ void putmap(t_map *map)
 	int i;
 	int j;
 
-	ft_printf(" xMAX = %i yMAX = %i\n\n", map->width, map->height);
 	i = -1;
 	while (++i < map->height){
 		j = -1;

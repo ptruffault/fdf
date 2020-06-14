@@ -28,7 +28,7 @@ static int map_checker(char **file_content, t_map *map)
 			if (!ft_isdigit(file_content[i][j]) && !ft_strchr(" -,xABCDEFabcdef", file_content[i][j]))
 				return (error("Broken map file", ".fdf file is corrupted."));
 	}
-	map->height = i;
+	map->height = i - 1;
 	map->width--;
 	if (!(map->points = (t_point **)malloc(sizeof(t_point) * map->height)))
 		return (error("setup_map filure:", "allocation"));
@@ -37,25 +37,7 @@ static int map_checker(char **file_content, t_map *map)
 
 static int color_by_alt(int alt)
 {
-/*	if (alt < -100)
-		return ();
-	if (-100 <= alt && alt < -50)
-		return (0x00004d);
-	if (-50 <= alt && alt < -20)
-		return (0x000080);
-	if (-20 <= alt && alt < -10)
-		return (0x0000b3);
-	if (-10 <= alt && alt < -1)
-		return (0x);
-	if (0 <= alt && alt < 10)
-		return (0x);
-	if (10 <= alt && alt < 20)
-		return (0x);
-	if (20 <= alt && alt < 50)
-		return (0x);
-	if (50 <= alt && alt < 100)
-		return (0x);*/
-	return ((alt * 100) + 1000);
+	return ((alt * 100) + 1200);
 }
 
 

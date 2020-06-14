@@ -20,25 +20,14 @@ void    draw_pixel(int x, int y, t_windows *window, int color)
 	int hex;
 
 	hex = color;
-	if (window){
-		ft_printf("draw_pixel x = %i y = %i\n", x, y);
+	if (window && x >= 0 && y >= 0 && x < window->width && y < window->height){
 		pixel = (x * 4) + (4 * window->width * y);
-		ft_printf("pixel = %i\n", pixel);
 		window->img_str[pixel]  = hex / 64;
 		window->img_str[pixel + 1] = hex / 32;
 		window->img_str[pixel + 2] = hex / 16;
 	}
 }
-void draw_lines()
-{
 
-}
-
-
-int angle_check(int angle)
-{
-	return (angle == -180 || angle == 0);
-}
 
 
 
@@ -61,35 +50,36 @@ void	draw_map_pts(t_windows *window, t_map *data)
 		{
 			a.x = data->margin_left + j * data->dist_pts_x;
 			a.y = data->margin_up + i * data->dist_pts_y;
-			a.x = (a.x - a.y) * cos(data->angle_x);
-			a.y = -data->points[i][j].z + (a.x + a.y) * sin(data->angle_y);
+			//a.x =  (a.x - a.y) * cos(data->angle_x);
+			//a.y = (a.x + a.y) * sin(data->angle_y);
 			a.color = data->points[i][j].color;
 
 
 			// right line
-			if (i != data->height - 1)
+			
+			if (j != data->width - 1)
 			{
 				// right
 				b.x = data->margin_left + (j + 1) * data->dist_pts_x;
 				b.y = data->margin_up + i * data->dist_pts_y;
-				b.x = (b.x - b.y) * cos(data->angle_x);
-				b.y = -data->points[i][j + 1].z + (b.x + b.y) * sin(data->angle_y);
+				//b.x = data->margin_left + (b.x - b.y) * cos(data->angle_x);
+				//b.y = -data->points[i][j + 1].z + (b.x + b.y) * sin(data->angle_y);
 				b.color = data->points[i][j + 1].color;
+			//	printf("a.x = %i a.y = %i b.x = %i b.y = %i\n", a.x, a.y, b.x, b.y);
 				init_brensenham(&a, &b, window);
 			}
 
 			// down line
-			if (j != data->width - 1)
+			/*if (i != data->height - 1)
 			{	
 				b.x = data->margin_left + j * data->dist_pts_x;
 				b.y = data->margin_up + (i + 1) * data->dist_pts_y;
 				b.x = (b.x - b.y) * cos(data->angle_x);
 				b.y = -data->points[i + 1][j].z + (b.x + b.y) * sin(data->angle_y);
-				
-				
+				//printf("a.x = %i a.y = %i b.x = %i b.y = %i\n", a.x, a.y, b.x, b.y);
 				b.color = data->points[i + 1][j].color;
 				init_brensenham(&a, &b, window);
-			}
+			}*/
 
 		}
 	}
