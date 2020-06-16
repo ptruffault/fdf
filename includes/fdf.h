@@ -15,6 +15,8 @@
 # include "libft.h"
 # include "mlx.h"
 # include "mlx_int.h"
+# include "math.h"
+# define PI 3.14159265358979323846
 
 
 typedef struct s_point
@@ -56,13 +58,13 @@ typedef struct s_map
 	int		width;
 	int		height;
 	
-	int 	angle_x;
-	int		angle_y;
+	float 	angle_x;
+	float	angle_y;
 	int 	sens_x;
 	int 	sens_y;
 
-	int 	dist_pts_x;
-	int 	dist_pts_y;
+	int 	dist_pts_xy;
+	//int 	dist_pts_y;
 	int 	z_multiplicateur;
 
 	int		margin_up;

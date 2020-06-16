@@ -29,7 +29,18 @@ void    draw_pixel(int x, int y, t_windows *window, int color)
 }
 
 
+void init_point(t_map *data, t_point *a, int i,int  j){
+	int x;
+	int y;
 
+	x = j * data->dist_pts_xy;
+	y = i * data->dist_pts_xy;
+	a->x = cos(data->angle_x) * x -sin(data->angle_x) * y;
+	a->y = cos(data->angle_x) * data->points[i][j].z * data->z_multiplicateur - sin(data->angle_y) * (sin(data->angle_x) * x + cos(data->angle_y));
+	a->x +=  data->margin_left;
+	a->y += data->margin_up + data->points[i][j].z;
+	a->color = data->points[i][j].color;
+}
 
 
 
@@ -41,46 +52,22 @@ void	draw_map_pts(t_windows *window, t_map *data)
 	t_point b;
 
 	i = -1;
-	init_pov(data, window);
-	window->color = 0xDC143C;
 	while (++i < data->height)
 	{
 		j = -1;
 		while (++j < data->width)
 		{
-			a.x = data->margin_left + j * data->dist_pts_x;
-			a.y = data->margin_up + i * data->dist_pts_y;
-			//a.x =  (a.x - a.y) * cos(data->angle_x);
-			//a.y = (a.x + a.y) * sin(data->angle_y);
-			a.color = data->points[i][j].color;
-
-
-			// right line
-			
+			init_point(data, &a, i, j);
 			if (j != data->width - 1)
 			{
-				// right
-				b.x = data->margin_left + (j + 1) * data->dist_pts_x;
-				b.y = data->margin_up + i * data->dist_pts_y;
-				//b.x = data->margin_left + (b.x - b.y) * cos(data->angle_x);
-				//b.y = -data->points[i][j + 1].z + (b.x + b.y) * sin(data->angle_y);
-				b.color = data->points[i][j + 1].color;
-			//	printf("a.x = %i a.y = %i b.x = %i b.y = %i\n", a.x, a.y, b.x, b.y);
+				init_point(data, &b, i , j + 1);
 				init_brensenham(&a, &b, window);
 			}
-
-			// down line
-			/*if (i != data->height - 1)
+			if (i != data->height - 1)
 			{	
-				b.x = data->margin_left + j * data->dist_pts_x;
-				b.y = data->margin_up + (i + 1) * data->dist_pts_y;
-				b.x = (b.x - b.y) * cos(data->angle_x);
-				b.y = -data->points[i + 1][j].z + (b.x + b.y) * sin(data->angle_y);
-				//printf("a.x = %i a.y = %i b.x = %i b.y = %i\n", a.x, a.y, b.x, b.y);
-				b.color = data->points[i + 1][j].color;
+				init_point(data, &b, i + 1 , j);
 				init_brensenham(&a, &b, window);
-			}*/
-
+			}
 		}
 	}
 }
