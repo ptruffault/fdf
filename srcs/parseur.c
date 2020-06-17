@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-static int map_checker(char **file_content, t_map *map)
+static int	map_checker(char **file_content, t_map *map)
 {
 	int i;
 	int j;
@@ -22,11 +22,12 @@ static int map_checker(char **file_content, t_map *map)
 	while (file_content[++i])
 	{
 		if (ft_count_word(file_content[i]) != map->width)
-			return (error("Broken map file", "Each line of map as to have the same width"));
+			return (error("Broken map", ".fdf file is corrupted."));
 		j = -1;
 		while (file_content[i][++j])
-			if (!ft_isdigit(file_content[i][j]) && !ft_strchr(" -,xABCDEFabcdef", file_content[i][j]))
-				return (error("Broken map file", ".fdf file is corrupted."));
+			if (!ft_isdigit(file_content[i][j])
+			&& !ft_strchr(" -,xABCDEFabcdef", file_content[i][j]))
+				return (error("Broken map", ".fdf file is corrupted."));
 	}
 	map->height = i - 1;
 	map->width--;
@@ -35,26 +36,25 @@ static int map_checker(char **file_content, t_map *map)
 	return (1);
 }
 
-static int color_by_alt(int alt)
+static int	color_by_alt(int alt)
 {
 	return ((alt * 100) + 1200);
 }
 
-
-static void setup_points_color(t_map *map, char *current_word, int i, int j)
+static void	setup_point(t_map *map, char *word, int i, int j)
 {
-	(void)current_word;
-	//char *ptr;
-	//char *color;
+	char *ptr;
 
-	//ptr = ft_strchr(current_word, ',');
-	//color = ft_strdup(ptr ? ptr : color_by_alt(map->points[i][j].z));
-	//map->points[i][j].color = ft_atoi_hex(color);
-	//ft_strdel(&color);
-	map->points[i][j].color = color_by_alt(map->points[i][j].z);
+	map->points[i][j].x = i;
+	map->points[i][j].y = j;
+	map->points[i][j].z = ft_atoi(word);
+	if ((ptr = ft_strchr(word, ',')))
+		map->points[i][j].color = ft_atoi_hex(ptr + 1);
+	else
+		map->points[i][j].color = color_by_alt(map->points[i][j].z);
 }
 
-static int setup_map(t_map *map, char **file_content)
+static int	setup_map(t_map *map, char **file_content)
 {
 	int		i;
 	int		j;
@@ -72,21 +72,14 @@ static int setup_map(t_map *map, char **file_content)
 		}
 		j = -1;
 		while (words[++j])
-		{
-			map->points[i][j].x = i;
-			map->points[i][j].y = j;
-			map->points[i][j].z = ft_atoi(words[j]);
-			setup_points_color(map, words[j], i, j);
-			
-		}
+			setup_point(map, words[j], i, j);
 		ft_freestrarr(words);
 	}
 	map->points[i] = NULL;
 	return (1);
 }
 
-
-int init_map(t_map *map, char *map_file_path)
+int			init_map(t_map *map, char *map_file_path)
 {
 	char **file_content;
 	int fd;

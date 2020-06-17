@@ -14,35 +14,26 @@
 #include <unistd.h>
 #include <math.h>
 
-void    draw_pixel(int x, int y, t_windows *window, int color)
-{
-	int pixel;
-	int hex;
-
-	hex = color;
-	if (window && x >= 0 && y >= 0 && x < window->width && y < window->height){
-		pixel = (x * 4) + (4 * window->width * y);
-		window->img_str[pixel]  = hex / 64;
-		window->img_str[pixel + 1] = hex / 32;
-		window->img_str[pixel + 2] = hex / 16;
-	}
-}
 
 
 void init_point(t_map *data, t_point *a, int i,int  j){
 	int x;
 	int y;
 
-	x = j * data->dist_pts_xy;
-	y = i * data->dist_pts_xy;
+	x = j * data->pas_xy;
+	y = i * data->pas_xy;
 	a->x = cos(data->angle_x) * x -sin(data->angle_x) * y;
-	a->y = cos(data->angle_x) * data->points[i][j].z * data->z_multiplicateur - sin(data->angle_y) * (sin(data->angle_x) * x + cos(data->angle_y));
+	a->y = cos(data->angle_x) * data->points[i][j].z * data->pas_z - sin(data->angle_y) * (sin(data->angle_x) * x + cos(data->angle_y));
 	a->x +=  data->margin_left;
-	a->y += data->margin_up + data->points[i][j].z;
+	a->y += data->margin_up;
+	if (-M_PI / 2 < data->angle_y && data->angle_y < M_PI /2){
+		a->y -= data->points[i][j].z;
+	}else if (M_PI / 2 + data->pas_angle <= data->angle_y || data->angle_y <= -M_PI / 2 - data->pas_angle){
+		
+		a->y += data->points[i][j].z;
+	}
 	a->color = data->points[i][j].color;
 }
-
-
 
 void	draw_map_pts(t_windows *window, t_map *data)
 {

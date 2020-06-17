@@ -1,6 +1,21 @@
 #include "fdf.h"
 
-void    go_brensenham(t_bresenham bre, t_windows *window, int increm, int h_v)
+
+static void    draw_pixel(int x, int y, t_windows *window, int color)
+{
+	int pixel;
+	int hex;
+
+	hex = color;
+	if (window && x >= 0 && y >= 0 && x < window->width && y < window->height){
+		pixel = (x * 4) + (4 * window->width * y);
+		window->img_str[pixel]  = hex / 64;
+		window->img_str[pixel + 1] = hex / 32;
+		window->img_str[pixel + 2] = hex / 16;
+	}
+}
+
+static void    go_brensenham(t_bresenham bre, t_windows *window, int increm, int h_v)
 {
     int color;
     int median;
@@ -25,7 +40,7 @@ void    go_brensenham(t_bresenham bre, t_windows *window, int increm, int h_v)
     }
 }
 
-void    put_bre_for_a(t_point *a, t_point *b, t_bresenham *bre)
+static void    put_bre_for_a(t_point *a, t_point *b, t_bresenham *bre)
 {
     if (a->x <= b->x)
         {
@@ -43,7 +58,7 @@ void    put_bre_for_a(t_point *a, t_point *b, t_bresenham *bre)
         bre->sub = -bre->dx * 2;
 }
 
-void    put_bre_for_b(t_point *a, t_point *b, t_bresenham *bre)
+static void    put_bre_for_b(t_point *a, t_point *b, t_bresenham *bre)
 {
     if (a->y <= b->y)
         {
@@ -67,8 +82,8 @@ void    init_brensenham(t_point *a, t_point *b, t_windows *window)
 
     bre.dx = ft_abs(b->x - a->x);
     bre.dy = ft_abs(b->y - a->y);
-    bre.color_a = a->color;
-    bre.color_b = b->color;
+    bre.color_a = b->color;
+    bre.color_b = a->color;
     if (bre.dx >= bre.dy)
     {
         put_bre_for_a(a, b, &bre);

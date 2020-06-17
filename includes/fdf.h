@@ -57,20 +57,13 @@ typedef struct s_map
 	t_point **points;
 	int		width;
 	int		height;
-	
 	float 	angle_x;
 	float	angle_y;
-	int 	sens_x;
-	int 	sens_y;
-
-	int 	dist_pts_xy;
-	//int 	dist_pts_y;
-	int 	z_multiplicateur;
-
+	int 	pas_xy;
+	int 	pas_z;
+	float	pas_angle;
 	int		margin_up;
-	int 	margin_down;
 	int		margin_left;
-	int 	margin_right;
 } t_map;
 
 /*
@@ -107,9 +100,7 @@ void free_map(t_map *map);
 /*
  * draw
 */
-void    draw_pixel(int x, int y, t_windows *window, int color);
-void	draw_map_pts(t_windows *window, t_map *data);
-void    go_brensenham(t_bresenham bre, t_windows *window, int increm, int h_v);
+
 void    init_brensenham(t_point *a, t_point *b, t_windows *window);
 void	draw_new_map(t_windows *win, t_map *map);
 
