@@ -14,7 +14,7 @@
 # define FDF_H
 # include "libft.h"
 # include "mlx.h"
-# include "mlx_int.h"
+//# include "mlx_int.h"
 # include "math.h"
 # define PI 3.14159265358979323846
 

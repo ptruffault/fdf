@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 	(void)argv;
 	t_map map;
 	t_windows win;
-	
+
 	if (argument_checker(argc, argv) && init_map(&map, argv[1]))
 	{
 		init_windows(&win, &map);
@@ -43,4 +43,3 @@ int main(int argc, char **argv)
 		return (1);
 	return (0);
 }
-	

@@ -41,7 +41,7 @@ DEPDIR		:=	$(BUILDDIR)/dep
 ifeq ($(UNAME), Darwin)
 	MINILIBX		:=	libmlx.a
 	MINILIBX_PATH :=  $(LIBDIR)/minilibx-macos
-	MINILIBX_LINK :=  -L/usr/local/lib/  -lmlx -framework OpenGL -framework AppKit
+	MINILIBX_LINK :=  -L $(MINILIBX_PATH)  -lmlx -framework OpenGL -framework AppKit
 	MINILIBX_INC  := -I $(MINILIBX_PATH)-I/usr/local/include
 else
 	MINILIBX		:=	libmlx.a
