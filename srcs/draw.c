@@ -20,8 +20,8 @@ void init_point(t_map *data, t_point *a, int i,int  j){
 
 	x = j * data->pas_xy;
 	y = i * data->pas_xy;
-	a->x = x *cos(data->angle_x) - y * sin(data->angle_y);
-	a->y = y *cos(data->angle_x) + x * sin(data->angle_y);
+	a->x = x * cos(data->angle_x) - y * sin(data->angle_y);
+	a->y = y * cos(data->angle_x) + x * sin(data->angle_y);
 	a->x +=  data->margin_left;
 	a->y += data->margin_up;
 	if ((-M_PI / 2 < data->angle_y && data->angle_y < M_PI /2) && data->angle_x != 0)

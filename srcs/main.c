@@ -6,29 +6,31 @@
 /*   By: ptruffau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 18:44:19 by ptruffau          #+#    #+#             */
-/*   Updated: 2020/01/21 18:44:25 by ptruffau         ###   ########.fr       */
+/*   Updated: 2020/08/31 12:40:39 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int argument_checker(int argc, char **argv)
+static int	argument_checker(int argc, char **argv)
 {
 	if (argc == 1)
-		return(error("No map given", "fdf need a map file path as argument. This map as to be a .fdf extention file."));
+		return (error("No map given",
+					"fdf need a map file path as argument.
+					This map as to be a .fdf extention file."));
 	else if (argc > 2)
-		warning("Too much argument given", "fdf only need one argument: the map file path. This map as to be a .fdf extention file.");
+		warning("Too much argument given",
+				"fdf only need one argument: the map file path.
+				This map as to be a .fdf extention file.");
 	else if (!ft_str_endwith(argv[1], ".fdf"))
-		return (error("Wrong map format", "fdf requiere a .fdf map format file."));
+		return (error("Wrong map format", "fdf need a .fdf map format file."));
 	return (1);
 }
 
-int main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-	t_map map;
-	t_windows win;
+	t_map		map;
+	t_windows	win;
 
 	if (argument_checker(argc, argv) && init_map(&map, argv[1]))
 	{

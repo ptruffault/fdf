@@ -6,7 +6,7 @@
 /*   By: ptruffau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 18:44:01 by ptruffau          #+#    #+#             */
-/*   Updated: 2020/01/21 18:44:05 by ptruffau         ###   ########.fr       */
+/*   Updated: 2020/08/31 12:30:35 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ static int	map_checker(char **file_content, t_map *map)
 		j = -1;
 		while (file_content[i][++j])
 			if (!ft_isdigit(file_content[i][j])
-			&& !ft_strchr(" -,xABCDEFabcdef", file_content[i][j]))
+					&& !ft_strchr(" -,xABCDEFabcdef", file_content[i][j]))
 				return (error("Broken map", ".fdf file is corrupted."));
 	}
 	map->height = i;
-
 	if (!(map->points = (t_point **)malloc(sizeof(t_point) * map->height)))
 		return (error("setup_map filure:", "allocation"));
 	return (1);
@@ -58,14 +57,15 @@ static int	setup_map(t_map *map, char **file_content)
 {
 	int		i;
 	int		j;
-	char 	**words;
-	
+	char	**words;
+
 	i = -1;
-	while(file_content[++i])
+	while (file_content[++i])
 	{
 		if (!(words = ft_strsplit_whitespace(file_content[i])))
 			return (error("setup_map filure:", "allocation"));
-		if (!(map->points[i] = (t_point *)malloc(sizeof(t_point) * (map->width + 1))))
+		if (!(map->points[i] = (t_point *)malloc(sizeof(t_point) *
+			(map->width + 1))))
 		{
 			ft_freestrarr(words);
 			return (error("setup_map filure:", "allocation"));
@@ -82,22 +82,23 @@ static int	setup_map(t_map *map, char **file_content)
 
 int			init_map(t_map *map, char *map_file_path)
 {
-	char **file_content;
-	int fd;
+	char	**file_content;
+	int		fd;
 
 	ft_bzero(map, sizeof(t_map));
-	if ((fd = ft_open(map_file_path)) >= 0 && (file_content = ft_get_txt(fd)))
+	if ((fd = ft_open(map_file_path)) >= 0 &&
+		(file_content = ft_get_txt(fd)))
 	{
 		ft_close(fd);
 		if (!map_checker(file_content, map) || !setup_map(map, file_content))
 		{
 			ft_freestrarr(file_content);
-			return (error("Erreur de formatage du fichier map : ", map_file_path));
+			return (error("Erreur formatage du fichier map: ", map_file_path));
 		}
 		ft_freestrarr(file_content);
 	}
 	else
-		return(error(strerror(errno) , map_file_path));
+		return (error(strerror(errno), map_file_path));
 	ft_get_set_map(map);
 	return (1);
 }

@@ -6,13 +6,13 @@
 /*   By: ptruffau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:00:00 by ptruffau          #+#    #+#             */
-/*   Updated: 2020/01/21 19:00:06 by ptruffau         ###   ########.fr       */
+/*   Updated: 2020/08/31 12:41:10 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
 	int i;
 	int j;
@@ -28,4 +28,3 @@ void free_map(t_map *map)
 		free(&map->points[i]);
 	}
 }
-
