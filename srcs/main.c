@@ -6,7 +6,7 @@
 /*   By: ptruffau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 18:44:19 by ptruffau          #+#    #+#             */
-/*   Updated: 2020/08/31 12:40:39 by yodana           ###   ########.fr       */
+/*   Updated: 2020/08/31 13:06:27 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ static int	argument_checker(int argc, char **argv)
 {
 	if (argc == 1)
 		return (error("No map given",
-					"fdf need a map file path as argument.
-					This map as to be a .fdf extention file."));
+					"fdf need a map file path as argument."));
 	else if (argc > 2)
 		warning("Too much argument given",
-				"fdf only need one argument: the map file path.
-				This map as to be a .fdf extention file.");
+				"fdf only need one argument: the map file path.");
 	else if (!ft_str_endwith(argv[1], ".fdf"))
 		return (error("Wrong map format", "fdf need a .fdf map format file."));
 	return (1);
