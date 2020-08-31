@@ -29,8 +29,8 @@ static int	map_checker(char **file_content, t_map *map)
 			&& !ft_strchr(" -,xABCDEFabcdef", file_content[i][j]))
 				return (error("Broken map", ".fdf file is corrupted."));
 	}
-	map->height = i - 1;
-	map->width--;
+	map->height = i;
+
 	if (!(map->points = (t_point **)malloc(sizeof(t_point) * map->height)))
 		return (error("setup_map filure:", "allocation"));
 	return (1);
@@ -76,6 +76,7 @@ static int	setup_map(t_map *map, char **file_content)
 		ft_freestrarr(words);
 	}
 	map->points[i] = NULL;
+	putmap(map);
 	return (1);
 }
 

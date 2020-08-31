@@ -9,9 +9,9 @@ static void    draw_pixel(int x, int y, t_windows *window, int color)
 	hex = color;
 	if (window && x >= 0 && y >= 0 && x < window->width && y < window->height){
 		pixel = (x * 4) + (4 * window->width * y);
-		window->img_str[pixel]  = 64;
-		window->img_str[pixel + 1] = 64;
-		window->img_str[pixel + 2] = 64;
+		window->img_str[pixel]  = hex / 64;
+		window->img_str[pixel + 1] = hex / 32;
+		window->img_str[pixel + 2] = hex / 16;
 	}
 }
 

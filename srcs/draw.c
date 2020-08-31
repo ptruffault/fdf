@@ -14,16 +14,24 @@
 #include <unistd.h>
 #include <math.h>
 
-
-
 void init_point(t_map *data, t_point *a, int i,int  j){
 	int x;
 	int y;
 
 	x = j * data->pas_xy;
 	y = i * data->pas_xy;
-	a->x = cos(data->angle_x) * x -sin(data->angle_x) * y;
-	a->y = cos(data->angle_x) * data->points[i][j].z * data->pas_z - sin(data->angle_y) * (sin(data->angle_x) * x + cos(data->angle_y));
+
+	//  Vue isometrique! Le trace des ordonées ne s'affiche pas
+	//a->x = x * cos(0.523599);
+    //a->y = y * sin(0.523599);
+	
+	 
+	a->x = x*cos(data->angle_x) - y * sin(data->angle_y);
+	a->y = y*cos(data->angle_x) + x * sin(data->angle_y);
+
+	//a->x = cos(data->angle_x) * x -sin(data->angle_x) * y;
+	//a->y = cos(data->angle_x) * data->points[i][j].z * data->pas_z - sin(data->angle_y) * (sin(data->angle_x) * x + cos(data->angle_y));
+
 	a->x +=  data->margin_left;
 	a->y += data->margin_up;
 	if (-M_PI / 2 < data->angle_y && data->angle_y < M_PI /2){
@@ -43,6 +51,7 @@ void	draw_map_pts(t_windows *window, t_map *data)
 	t_point b;
 
 	i = -1;
+	printf("angle x == %f && angle y == %f\n", data->angle_x, data->angle_y);
 	while (++i < data->height)
 	{
 		j = -1;

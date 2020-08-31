@@ -20,11 +20,11 @@ void init_windows(t_windows *win, t_map *data)
 	win->width = 800;
 	win->height = 800;
 	win->windows = mlx_new_window(win->graph_id , win->width, win->height, "FDF");
-	data->angle_y = M_PI / 2;
-	data->angle_x = M_PI / 2;
+	data->angle_y = 0;
+	data->angle_x = 0;
 	data->pas_z = 10;
 	data->pas_xy = 10;
-	data->pas_angle = M_PI / 12;
+	data->pas_angle = 3.14 / 8;
 	data->margin_up = win->height / 2;
 	data->margin_left = win->width / 2;
 }
