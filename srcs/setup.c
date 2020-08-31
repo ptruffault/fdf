@@ -12,19 +12,25 @@
 
 #include "fdf.h"
 
-void init_windows(t_windows *win, t_map *data)
+void	init_windows(t_windows *w, t_map *data)
 {
-	ft_bzero(win, sizeof(t_windows));
-	if (!(win->graph_id = mlx_init()))
+	int ratio;
+
+	ft_bzero(w, sizeof(t_windows));
+	if (!(w->graph_id = mlx_init()))
 		exit(1);
-	win->width = 800;
-	win->height = 800;
-	win->windows = mlx_new_window(win->graph_id , win->width, win->height, "FDF");
+	ratio = max(data->width, data->height) / min(data->width, data->height);
+	data->pas_xy = ratio * 5;
+	if (data->width < 30 || data->height < 30)
+		data->pas_xy = 15;
 	data->angle_y = 0;
 	data->angle_x = 0;
 	data->pas_z = 10;
-	data->pas_xy = 10;
-	data->pas_angle = 3.14 / 8;
-	data->margin_up = win->height / 2;
-	data->margin_left = win->width / 2;
+	w->width = data->pas_xy * data->width;
+	w->height = data->pas_xy * data->height;
+	data->margin_up = w->height / 3;
+	data->margin_left = w->width / 3;
+	w->width += 2 * w->width / 3;
+	w->height += 2 * w->height / 3;
+	w->windows = mlx_new_window(w->graph_id, w->width, w->height, "FDF");
 }
