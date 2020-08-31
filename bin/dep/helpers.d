@@ -1,2 +1,2 @@
 bin/obj/helpers.o: srcs/helpers.c includes/fdf.h \
-  lib/libft/includes/libft.h /usr/local/include/mlx.h
+  lib/libft/includes/libft.h lib/minilibx-linux/mlx.h

@@ -17,7 +17,6 @@ void init_windows(t_windows *win, t_map *data)
 	ft_bzero(win, sizeof(t_windows));
 	if (!(win->graph_id = mlx_init()))
 		exit(1);
-		ft_printf("width mars == %d", data->width);
 	win->width = 800;
 	win->height = 800;
 	win->windows = mlx_new_window(win->graph_id , win->width, win->height, "FDF");

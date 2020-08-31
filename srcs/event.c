@@ -19,6 +19,8 @@ static void update_angle(float x, float y, t_windows *win){
 
 	data->angle_x = x;
 	data->angle_y = y;
+	mlx_clear_window(win->graph_id, win->windows);
+	mlx_destroy_image(win->graph_id, win->img_ptr);
 	draw_new_map(win, data);
 
 }	
@@ -39,8 +41,6 @@ static void zoom(int sens, t_windows *win){
 
 int	ft_event(int key, t_windows *win)
 {
-
-	ft_printf("%d\n", key);
 	if (key == 18)
 		update_angle(0, 0, win);
 	if (key == 19)

@@ -38,7 +38,7 @@ static int	map_checker(char **file_content, t_map *map)
 
 static int	color_by_alt(int alt)
 {
-	return ((alt * 100) + 1200);
+	return ((ft_abs(alt) + 5000) * 10000);
 }
 
 static void	setup_point(t_map *map, char *word, int i, int j)
