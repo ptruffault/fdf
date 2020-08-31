@@ -42,7 +42,7 @@ int	ft_event(int key, t_windows *win)
 
 	ft_printf("%d\n", key);
 	if (key == 18)
-		update_angle(3.14 / 2, 3.14 / 2, win);
+		update_angle(0, 0, win);
 	if (key == 19)
 		update_angle(0.523599, 0.523599, win);
 	if (key == 20)

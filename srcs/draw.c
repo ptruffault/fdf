@@ -26,18 +26,17 @@ void init_point(t_map *data, t_point *a, int i,int  j){
     //a->y = y * sin(0.523599);
 	
 	 
-	a->x = x*cos(data->angle_x) - y * sin(data->angle_y);
-	a->y = y*cos(data->angle_x) + x * sin(data->angle_y);
+	a->x = x *cos(data->angle_x) - y * sin(data->angle_y);
+	a->y = y *cos(data->angle_x) + x * sin(data->angle_y);
 
 	//a->x = cos(data->angle_x) * x -sin(data->angle_x) * y;
 	//a->y = cos(data->angle_x) * data->points[i][j].z * data->pas_z - sin(data->angle_y) * (sin(data->angle_x) * x + cos(data->angle_y));
 
 	a->x +=  data->margin_left;
 	a->y += data->margin_up;
-	if (-M_PI / 2 < data->angle_y && data->angle_y < M_PI /2){
+	if ((-M_PI / 2 < data->angle_y && data->angle_y < M_PI /2) && data->angle_x != 0){
 		a->y -= data->points[i][j].z;
-	}else if (M_PI / 2 + data->pas_angle <= data->angle_y || data->angle_y <= -M_PI / 2 - data->pas_angle){
-		
+	}else if ((M_PI / 2 + data->pas_angle <= data->angle_y || data->angle_y <= -M_PI / 2 - data->pas_angle) && data->angle_x != 0 ){
 		a->y += data->points[i][j].z;
 	}
 	a->color = data->points[i][j].color;
